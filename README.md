@@ -1,2 +1,4 @@
 # TriQ
-Backend Compiler for Scaffold
+Backend Compiler for Scaffold.
+
+Readme coming soon! 
