@@ -1,0 +1,26 @@
+Pattern: CNOT Implementation
+Search:
+CNOT
+Action:
+Replace
+RY,0,params:pi/2;
+XX,0,1,params:pi/4;
+RY,0,params:-pi/2;
+RX,1,params:-pi/2;
+RZ,0,params:-pi/2;
+End
+Pattern: H Implementation
+Search:
+H
+Action:
+Replace
+RY,0,params:pi/2;
+RX,0,params:pi;
+End
+Pattern: X Implementation
+Search:
+X
+Action
+Replace
+RX,0,params:pi;
+End

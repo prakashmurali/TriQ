@@ -1,0 +1,12 @@
+To generate graph for metis:
+python ~/code/IBM_Data/metis_graph.py RM8x8_T.rlb . RM8x8.metis_graph
+
+To use metis:
+gpmetis RM8x8.metis_graph <nparts>
+
+Alwin Zulehner code:
+/home/prakash/code/Zulh/ibm_qx_mapping
+
+Trapped ion sim:
+In ~/isca/trapped_ion folder
+
