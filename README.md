@@ -15,8 +15,9 @@ To install TriQ,
 
 # Compiling a program
 To run a program prog_name.scaffold with TriQ, first exract an intermediate representation using ScaffCC.
-    ./scaffold.sh -b prog_name.scaffold
-
+```
+./scaffold.sh -b prog_name.scaffold
+```
 Run TriQ on the intermediate representation
     python ir2dag.py prog_name.qasm prog_name.in
     ./triq prog_name.in <output_file_name> <target_backend_name> 
