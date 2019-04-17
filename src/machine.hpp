@@ -48,72 +48,46 @@ public:
 		if(name == "ibmqx5"){
 			nQ = 16;
 			data_file = "config/ibmqx5";
-			partition_file = "config/partitions/ibmqx5.metis_graph.part.2";
-			num_partitions = 2;
 		}else if(name == "ibmqx4"){
 			nQ = 5;
 			data_file = "config/ibmqx4";
-			partition_file = "config/partitions/ibmqx4.metis_graph.part.2";
-			num_partitions = 2;
 		}else if(name == "ibmq_16_melbourne"){
 			nQ = 14;
 			data_file = "config/ibmq_16_melbourne";
-			partition_file = "config/partitions/ibmq_16_melbourne.metis_graph.part.2";
-			num_partitions = 2;
 		}else if(name == "tion"){
 			nQ = 5;
 			data_file = "config/tion";
-			partition_file = "config/partitions/tion.metis_graph.part.2";
-			num_partitions = 2;
 		}else if(name == "agave"){
 			nQ = 4;
 			data_file = "config/agave";
-			partition_file = "config/partitions/agave.metis_graph.part.2";
-			num_partitions = 2;
 		}else if(name == "Aspen1"){
 			nQ = 16;
 			data_file = "config/Aspen1";
-			partition_file = "config/partitions/Aspen1.metis_graph.part.3";
-			num_partitions = 3;
 		}
 		else if(name == "Aspen3"){
 			nQ = 14;
 			data_file = "config/Aspen3";
-			partition_file = "config/partitions/Aspen3.metis_graph.part.3";
-			num_partitions = 3;
 		}
 		else if(name == "RM4x8"){
 			nQ = 32;
 			data_file = "config/RM4x8";
-			partition_file = "config/partitions/RM4x8.metis_graph.part.4";
-			num_partitions = 4;
 		}else if(name == "RM8x8"){
 			nQ = 64;
 			data_file = "config/RM8x8";
-			partition_file = "config/partitions/RM8x8.metis_graph.part.8";
-			num_partitions = 8;
 		}else if(name == "RM8x9"){
 			nQ = 72;
 			data_file = "config/RM8x9";
-			partition_file = "config/partitions/RM8x9.metis_graph.part.8";
-			num_partitions = 8;
 		}else if(name == "RM8x16"){
 			nQ = 128;
 			data_file = "config/RM8x16";
-			partition_file = "config/partitions/RM8x16.metis_graph.part.16";
-			num_partitions = 16;
 		}else if(name == "dummy"){
 			nQ = 6;
 			data_file = "config/dummy";
-			partition_file = "config/partitions/dummy.parts";
-			num_partitions=1;
 		}
 		else{
 			assert(name == "Aer");
 			nQ = aerNQ;
 			data_file = aer_data_file;
-			partition_file = aer_partition_file;
-			num_partitions=2;
 		}
 		for (int i = 0; i < nQ; i++) {
 			HwQubit *hq = new HwQubit(i);
@@ -123,9 +97,6 @@ public:
 		compute_swap_paths();
 		print_swap_paths();
 		compute_swap_info();
-		read_partition_data(partition_file);
-		//print_partition_data();
-
 	}
 
 	~Machine(){
