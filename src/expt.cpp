@@ -98,7 +98,7 @@ void compile_and_print_for_machine(string progName, string outName, string machi
 }
 
 int main(int argc, char **argv){
-	//compile_and_print_for_machine("programs/T1.in", "output/test.qasm", "Aspen3", 0);
+	//compile_and_print_for_machine("programs/T1.in", "output/test.qasm", "ibmqx5", 0);
 	compile_and_print_for_machine(argv[1], argv[2], argv[3], atoi(argv[4]));
 	return 0;
 }
