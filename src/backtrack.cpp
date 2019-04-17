@@ -129,13 +129,10 @@ map<Gate*, BacktrackSolution*> Backtrack::get_solution(int apply_first_gate_chec
 	if (apply_first_gate_check) {
 		if (sol[gate_order[0]]->decision == CtrlNotRestore
 				|| sol[gate_order[0]]->decision == TargNotRestore) {
-			cout << "first cnot swaps" << endl;
 			BacktrackSolution *s = sol[gate_order[0]];
-			//assert(s->bnode->parent == root);
 			s->decision = CtrlRestore;
 			s->pre_perm = s->post_perm;
 			root->qubit_map = s->post_perm;
-			//root->hw_map = s->bnode->hw_map;
 			for (int i = 0; i < C->qubits.size(); i++) {
 				Qubit *qi = C->qubits[i];
 				int hw_qubit = root->qubit_map[qi];
@@ -154,7 +151,6 @@ map<Gate*, BacktrackSolution*> Backtrack::get_solution(int apply_first_gate_chec
 int Backtrack::check_if_backtracking_required(BacktrackNode *n){
 	if(M->machine_name == "tion") return 0;
 	int gidx = n->gate_idx;
-	//assume this function wont be called for a leaf
 	assert(!is_leaf(n));
 	Gate *g = gate_order[gidx+1]; //g is the next gate
 	Qubit *q1 = g->vars[0];
@@ -223,13 +219,6 @@ void Backtrack::solve(BacktrackNode *n, int consider_measurements){
 					solve(n->child[i], consider_measurements);
 			}
 		}else{
-			/* Prior work comparisons:
-			 * Disable above check i.e., dont backtrack.
-			 * How to get ASPLOS approximately? CtrlRestore
-			 * How to get TQ approximately? CtrlNotRestore
-			 * Disable MRU ordering
-			 */
-
 			if(CompilerAlgorithm == CompileOpt){
 				n->child.push_back(create_child(n, CtrlRestore));
 			}else if(CompilerAlgorithm == CompileDijkstra){
@@ -239,9 +228,7 @@ void Backtrack::solve(BacktrackNode *n, int consider_measurements){
 			}else;
 
 			if (n->child[0]->reliab < best_reliab){
-				//cout << "Issuing solve for a child\n";
 				solve(n->child[0], consider_measurements);
-				//cout << "Returned from only child\n";
 			}
 		}
 
@@ -252,10 +239,7 @@ void Backtrack::solve(BacktrackNode *n, int consider_measurements){
 
 
 	} else {
-		//cout << "\nSaw a leaf" << n->gate_idx << " " << n->decision << "\n";
-		//cout << "\n My parent is " << n->parent->gate_idx << " decision " << n->parent->decision << "\n";
 		Gate *g = gate_order[n->gate_idx];
-		//g->print();
 		//Assume all the program qubits are measured at the leaf
 		if (consider_measurements) {
 			float measure_reliab = 0;
@@ -266,9 +250,6 @@ void Backtrack::solve(BacktrackNode *n, int consider_measurements){
 			n->reliab = n->reliab + measure_reliab;
 		}
 		if (n->reliab < best_reliab) {
-			//cout << "Updated best leaf" << n->gate_idx << " " << n->decision
-			//		<< "\n";
-			//cout << exp(-n->reliab) << " " << exp(-best_reliab);
 			best_reliab = n->reliab;
 			best_leaf = n;
 		}
@@ -332,7 +313,7 @@ map<Gate*, BacktrackSolution*> BacktrackFiniteLookahead::solve(){
 		}else{
 			B.solve(B.root, 1);
 		}
-		map<Gate*, BacktrackSolution*> bsol = B.get_solution(0); //1 will mess up things -- modifications based on first gate
+		map<Gate*, BacktrackSolution*> bsol = B.get_solution(0);
 		solution_dump.push_back(bsol);
 		for(auto item : bsol){
 			Gate *Gi = item.first;
