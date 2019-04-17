@@ -40,4 +40,4 @@ Prakash Murali, Jonathan M. Baker, Ali Javadi Abhari, Frederic T. Chong, Margare
 Please reach out to Prakash Murali (pmurali@princeton.edu) for any questions or clarifications.
 
 # Coming Soon
-More compiler options and helper methods to extract reliablity data automatically rather than specifying them manually in the config files.
+More compiler options and helper methods to extract reliablity data automatically from vendor APIs
