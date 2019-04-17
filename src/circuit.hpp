@@ -40,7 +40,6 @@ public:
 
 	Circuit *rewrite_with_mapping(std::map<Qubit*, int> *qubit_map, Machine *M);
 	vector<Gate*> *topological_ordering();
-	vector<Gate*> *mru_topological_ordering(std::map<Qubit*, int> qubit_map, Machine *M);
 	set<Gate*> descendants(Gate *g);
 	set<Gate*> ancestors(Gate *g);
 	set<Gate*> can_overlap_set(Gate *g);
