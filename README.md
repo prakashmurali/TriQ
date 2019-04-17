@@ -10,8 +10,10 @@ Dependencies:
 2. [Z3 SMT Solver](https://github.com/Z3Prover/z3)
 
 To install TriQ, 
-> ./configure
-> make 
+```
+./configure
+make 
+```
 
 # Compiling a program
 To run a program prog_name.scaffold with TriQ, first exract an intermediate representation using ScaffCC.
@@ -27,3 +29,15 @@ For example, to compile programs for IBMQ5
 ```
 ./triq prog_name.in prog_name.out ibmqx5
 ```
+For each backend, TriQ assumes that the error data for single qubit, two-qubit and readout operations are specified in the config directory. For example, for IBMQ5, the Single qubit fidelity data should be specified in ibmqx5_S.rlb. Each line in this file specifies a qubit number and the corresponding fidelity. Two-qubit gate fidelity is specified in ibmqx5_T.rlb and readout fidelity is specified in ibmqx5_M.rlb.
+
+# Coming Soon
+More compiler options and helper methods to extract reliablity data automatically rather than specifying them manually in the config files.
+
+# Questions
+Please reach out to Prakash Murali (pmurali@princeton.edu) for any questions or clarifications.
+
+# Citing TriQ
+If you use TriQ in your work, we would appreciate it if you cite our paper:
+
+Prakash Murali, Jonathan M. Baker, Ali Javadi Abhari, Frederic T. Chong, Margaret Martonosi. "Noise-Adaptive Compiler Mappings for Noisy Intermediate-Scale Quantum Computers", International Conference on Architectural Support for Programming Languages and Operating Systems (ASPLOS), 2019.
