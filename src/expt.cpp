@@ -45,11 +45,7 @@ void compile_and_print_for_machine(string progName, string outName, string machi
 	pMapper.map_with_z3();
 	//pMapper.print_stats();
 	vector<Gate*>* torder;
-	if(CompilerAlgorithm == CompileOpt){
-		torder = C.mru_topological_ordering(pMapper.qubit_map, &M);
-	}else{
-		torder = C.topological_ordering();
-	}
+	torder = C.topological_ordering();
 	C.enforce_topological_ordering(torder);
 
 	map<Gate*, BacktrackSolution*> bsol;
@@ -89,10 +85,10 @@ void compile_and_print_for_machine(string progName, string outName, string machi
 		//Tgen.print_code(C_trans, outName);
 	}else{
 		C_trans = Tgen.map_and_insert_swap_operations(); //We require a mapping to insert swaps
-		//OptimizeSingleQubitOps sq_opt(C_trans);
-		//C_1q_opt = sq_opt.test_optimize();
-		//Tgen.print_code(C_1q_opt, outName);
-		Tgen.print_code(C_trans, outName);
+		OptimizeSingleQubitOps sq_opt(C_trans);
+		C_1q_opt = sq_opt.test_optimize();
+		Tgen.print_code(C_1q_opt, outName);
+		//Tgen.print_code(C_trans, outName);
 	}
 
 	if(C_trans) delete C_trans;
