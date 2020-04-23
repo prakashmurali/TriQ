@@ -1,5 +1,6 @@
 CC=g++
-CXXFLAGS=-I/home/prakash/software/z3build/include -std=c++11
+Z3INCLUDE=
+CXXFLAGS=-I$(Z3INCLUDE) -std=c++11
 
 src = $(wildcard src/*.cpp)
 obj = $(src:.cpp=.o)
