@@ -27,7 +27,7 @@ python ir2dag.py prog_name.qasm prog_name.in
 ```
 For example, to compile programs for IBMQ5 
 ```
-./triq prog_name.in prog_name.out ibmqx5
+./triq prog_name.in prog_name.out ibmqx5 0
 ```
 For each backend, TriQ assumes that the error data for single qubit, two-qubit and readout operations are specified in the config directory. For example, for IBMQ5, the Single qubit fidelity data should be specified in ibmqx5_S.rlb. Each line in this file specifies a qubit number and the corresponding fidelity. Two-qubit gate fidelity is specified in ibmqx5_T.rlb and readout fidelity is specified in ibmqx5_M.rlb.
 
