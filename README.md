@@ -11,7 +11,6 @@ Dependencies:
 
 To install TriQ, 
 ```
-./configure
 make 
 ```
 
