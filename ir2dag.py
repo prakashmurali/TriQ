@@ -52,8 +52,13 @@ def process_gate(line, f_out):
             break
     for g in gset2:
         if line.startswith(g):
-            qbit = line.split()[1].split('[')[1].split(']')[0]
-            angle = line.split()[0].split('(')[1].split(')')[0]
+            #manually fix spacing issue
+            line = line.replace("[", "[ ")
+            line = line.replace("]", " ]")
+            qbit = line.split()[4]
+            angle = line.split()[1]
+            # qbit = line.split()[1].split('[')[1].split(']')[0]
+            # angle = line.split()[0].split('(')[1].split(')')[0]
            
             print(global_gate_id, g, qbit, angle)
             f_out.write(str(global_gate_id) + ' ' + gate_names[g] + ' 1 ' + qbit)
